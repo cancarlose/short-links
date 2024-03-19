@@ -15,4 +15,4 @@ services:
     ports:
       - "6379:6379"
     environment:
-      - REDIS_PASSWORD=mypassword
+      - REDIS_PASSWORD=docker
