@@ -5,6 +5,16 @@ import postgres from 'postgres';
 
 const app = fastify()
 
+app.get('/links', async () => {
+  const result = await sql/*sql*/`
+    SELECT *
+    FROM shorts_links
+    ORDER BY created_at DESC
+  `
+
+  return result
+})
+
 app.post('/links', async(request, reply) => {
   const createLinkSchema = z.object({
     code: z.string().min(3),

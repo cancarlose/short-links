@@ -5,3 +5,7 @@ Content-Type: application/json
   "code": "carlosgithub",
   "url": "https://github.com/cancarlose"
 }
+
+###
+
+GET  http://localhost:3333/links
