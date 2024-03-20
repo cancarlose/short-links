@@ -9,6 +9,10 @@ async function setup() {
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )
   `
+
+  await sql.end();
+
+  console.log("Setup feito com sucesso!");
 }
 
-setup()
+setup();
