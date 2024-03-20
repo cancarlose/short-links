@@ -3,13 +3,19 @@ import { z } from 'zod'; // ferramenta para validar dados
 
 const app = fastify()
 
-app.post('/links', (request) => {
+app.post('/links', async(request) => {
   const createLinkSchema = z.object({
     code: z.string().min(3),
     url: z.string().url(),
   })
 
-  const { code, url } = createLinkSchema.parse(request.body)
+  const { code, url } = createLinkSchema.parse(request.body) // Parse: conversão de strings em instâncias de tipos de dados nativos
+
+  const result = await sql/*sql*/`
+  INSERT INTO shorts_links (code, original_url)
+  VALUES (${code}, ${url})
+  RETURNING id
+  `
 
   return "Hello World!"
 })
