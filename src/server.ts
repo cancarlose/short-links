@@ -1,5 +1,6 @@
 import fastify from 'fastify'
 import { z } from 'zod'; // ferramenta para validar dados
+import { sql } from './lib/postgres';
 
 const app = fastify()
 
