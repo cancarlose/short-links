@@ -1,4 +1,4 @@
-import { sql } from './lib/postgres';
+import { sql } from './lib/postgres'
 
 async function setup() {
   await sql/*sql*/ `
@@ -10,9 +10,9 @@ async function setup() {
   )
   `
 
-  await sql.end();
+  await sql.end()
 
-  console.log("Setup feito com sucesso!");
+  console.log("Setup feito com sucesso!")
 }
 
-setup();
+setup()
