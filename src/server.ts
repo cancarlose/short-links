@@ -4,10 +4,12 @@ import { z } from 'zod'; // ferramenta para validar dados
 const app = fastify()
 
 app.post('/links', (request) => {
-  const { code, url } = z.object({
+  const createLinkSchema = z.object({
     code: z.string().min(3),
     url: z.string().url(),
-  }).parse(request.body)
+  })
+
+  const { code, url } = createLinkSchema.parse(request.body)
 
   return "Hello World!"
 })
