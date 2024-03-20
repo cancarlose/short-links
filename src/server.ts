@@ -1,8 +1,11 @@
 import fastify from 'fastify'
+import { z } from 'zod' // ferramenta para validar dados
 
 const app = fastify()
 
-app.get('/teste', () => {
+app.post('/links', (request) => {
+
+
   return "Hello World!"
 })
 
