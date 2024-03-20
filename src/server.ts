@@ -4,7 +4,7 @@ import { sql } from './lib/postgres';
 
 const app = fastify()
 
-app.post('/links', async(request) => {
+app.post('/links', async(request, reply) => {
   const createLinkSchema = z.object({
     code: z.string().min(3),
     url: z.string().url(),
@@ -18,7 +18,9 @@ app.post('/links', async(request) => {
   RETURNING id
   `
 
-  return "Hello World!"
+  const link = result[0]
+
+  return reply.status(201) // Reply: para mudar dados da resposta, return
 })
 
 app.listen ({
