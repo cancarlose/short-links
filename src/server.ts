@@ -20,7 +20,10 @@ app.post('/links', async(request, reply) => {
 
   const link = result[0]
 
-  return reply.status(201) // Reply: para mudar dados da resposta, return
+  // 200 - sucesso, generico
+  // 201 - registro criado com sucesso
+
+  return reply.status(201).send({ shortLinkId: link.id }) // Reply: para mudar dados da resposta, return
 })
 
 app.listen ({
