@@ -1,6 +1,6 @@
 # Short Links
 
-Este é um projeto simples de gerenciamento de URLs encurtadas, onde você pode criar e gerenciar links curtos para redirecionamento. Ele foi desenvolvido usando [Redis](https://redis.io/docs/data-types/) e [Postgres](https://www.postgresql.org/docs/) como banco de dados.
+Este é um projeto simples de gerenciamento de URLs encurtadas, onde você pode criar e gerenciar links curtos para redirecionamento. Ele foi desenvolvido usando [Node.js](https://nodejs.org) com [HTTP](https://developer.mozilla.org/pt-BR/docs/Web/HTTP) como framework web, e os bancos de dados [Redis](https://redis.io) e [PostgreSQL](https://www.postgresql.org).
 
 ## Funcionalidades
 
@@ -12,31 +12,15 @@ Este é um projeto simples de gerenciamento de URLs encurtadas, onde você pode 
 
 Antes de começar, certifique-se de ter os seguintes requisitos instalados em sua máquina:
 
-- NodeJS com TypeScript
+- Node.js
 - Redis
-- Postgres
+- PostgreSQL
 
 ## Instalação e Configuração
 
 1. Clone este repositório em sua máquina local:
 
-```bash
 git clone https://github.com/cancarlose/short-links.git
-
-
-## Instalação e Configuração
-
-npm install
-
-## Configure as variáveis de ambiente no arquivo .env, incluindo as configurações do Redis e Postgres:
-
-REDIS_URL=URL_DO_SEU_REDIS
-POSTGRES_URL=URL_DO_SEU_POSTGRES
-
-
-## Inicie o servidor:
-
-npm start
 
 ## Uso
 
