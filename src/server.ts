@@ -5,12 +5,19 @@ import postgres from 'postgres';
 
 const app = fastify()
 
-app.get('/:code', (request) => {
+app.get('/:code', async (request) => {
   const getLinkSchema = z.object({
     code: z.string().min(3),
   })
 
   const { code } = getLinkSchema.parse(request.params)
+
+  const result = await sql/*sql*/`
+    SELECT id, original_url
+    FROM shorts_links
+    WHERE shorts_links.code = ${code}
+  `
+  return result
 })
 
 // Rota de listagem
