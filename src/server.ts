@@ -5,7 +5,7 @@ import postgres from 'postgres';
 
 const app = fastify()
 
-app.get('/:code', async (request) => {
+app.get('/:code', async (request, reply) => {
   const getLinkSchema = z.object({
     code: z.string().min(3),
   })
@@ -17,7 +17,16 @@ app.get('/:code', async (request) => {
     FROM shorts_links
     WHERE shorts_links.code = ${code}
   `
-  return result
+
+  if(result.length === 0) {
+    return reply.status(400).send( { message: "Link not found." })
+  }
+
+  const link = result[0]
+
+  // 301 - permanente
+  // 302 - temporário
+  return reply.redirect(301, link.original_url)
 })
 
 // Rota de listagem
