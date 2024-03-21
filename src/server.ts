@@ -84,6 +84,15 @@ app.post('/api/links', async(request, reply) => {
 app.get('/api/metric', async () => {
   const result = await redis.zRangeByScoreWithScores('metrics', 0, 50)
 
+  const metrics = result
+  .sort((a, b) => b.score - a.score)
+  .map(item => {
+    return {
+      shortLinkId: Number(item.value),
+      clicks: item.score
+    }
+  })
+
   return result
 })
 
