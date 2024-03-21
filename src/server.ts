@@ -2,6 +2,7 @@ import fastify from 'fastify'
 import { z } from 'zod'; // ferramenta para validar dados
 import { sql } from './lib/postgres';
 import postgres from 'postgres';
+import { redis } from './lib/redis';
 
 const app = fastify()
 
@@ -23,6 +24,9 @@ app.get('/:code', async (request, reply) => {
   }
 
   const link = result[0]
+
+  await redis.zIncrBy('metrics', 1, String(link.id))
+  // Faz-se necessário ferramenta de auxilio para melhor visualização do Redis.
 
   // 301 - permanente
   // 302 - temporário
