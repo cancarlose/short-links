@@ -83,6 +83,8 @@ app.post('/api/links', async(request, reply) => {
 
 app.get('/api/metric', async () => {
   const result = await redis.zRangeByScoreWithScores('metrics', 0, 50)
+
+  return result
 })
 
 app.listen ({
