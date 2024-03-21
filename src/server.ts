@@ -1,11 +1,12 @@
-import fastify from 'fastify'
+import fastify from 'fastify';
+import postgres from 'postgres';
 import { z } from 'zod'; // ferramenta para validar dados
 import { sql } from './lib/postgres';
-import postgres from 'postgres';
 import { redis } from './lib/redis';
 
 const app = fastify()
 
+// Rota de encaminhamento
 app.get('/:code', async (request, reply) => {
   const getLinkSchema = z.object({
     code: z.string().min(3),
@@ -78,6 +79,10 @@ app.post('/api/links', async(request, reply) => {
     return reply.status(500).send({message: 'Internal server error.'})
 
   }
+})
+
+app.get('/api/metric', async () => {
+  const result = await redis.zRangeByScoreWithScores('metrics', 0, 50)
 })
 
 app.listen ({
