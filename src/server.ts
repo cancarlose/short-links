@@ -5,8 +5,16 @@ import postgres from 'postgres';
 
 const app = fastify()
 
+app.get('/:code', (request) => {
+  const getLinkSchema = z.object({
+    code: z.string().min(3),
+  })
+
+  const { code } = getLinkSchema.parse(request.params)
+})
+
 // Rota de listagem
-app.get('/links', async () => {
+app.get('/api/links', async () => {
   const result = await sql/*sql*/`
     SELECT *
     FROM shorts_links
@@ -17,7 +25,7 @@ app.get('/links', async () => {
 })
 
 // Rota de criação
-app.post('/links', async(request, reply) => {
+app.post('/api/links', async(request, reply) => {
   const createLinkSchema = z.object({
     code: z.string().min(3),
     url: z.string().url(),
